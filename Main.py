@@ -1,3 +1,3 @@
-from HypotheticalMachineRunner import *
+from HypotheticalMachineRunner import runHypMachine
 
 runHypMachine()
