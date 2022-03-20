@@ -3,13 +3,11 @@ import os, sys
 def lexic():
     fileToRun = open(os.path.join(os.path.dirname(sys.argv[0]), "AVAFiles/correto.lalg-v2.txt"), "r")
     
-    lineCount = 0
     keys = []
     linesList = []
     isComment = False
 
     for line in fileToRun:
-        lineCount += 1
         linesList.append(len(keys) + 1)
         line = line.rstrip()
         i = 0
@@ -145,18 +143,13 @@ def lexic():
                 i = i + 1
                 continue
             else:
-                print("Error: character " + line[i] + " not defined")
+                print("Error: character " + line[i] + " not defined. Remove invalid tab identation.")
                 exit()
 
     keys[0] = keys[0].replace(" ", "")
-    linesList = str(linesList).replace("[", "").replace("]", "").replace(",", "")
 
     syntacticLalgFile = open(os.path.join(os.path.dirname(sys.argv[0]), 'GeneratedFiles/syntacticLalg.txt'), "w")
     syntacticLalgFile.writelines(keys)
     syntacticLalgFile.close()
-
-    linesListFiles = open(os.path.join(os.path.dirname(sys.argv[0]), 'GeneratedFiles/linesList.txt'), "w")
-    linesListFiles.writelines(linesList)
-    linesListFiles.close()
 
     fileToRun.close()
